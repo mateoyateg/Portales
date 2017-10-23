@@ -31,7 +31,7 @@ def game():
 		
         if heroe.rect.colliderect(portales[4].rect):
 			heroe.puntos = heroe.puntos + 1
-			heroe.portal = randint (0,3)
+			heroe.portal = randint (1,2)
 			heroe.rect.x = portales[heroe.portal].rect.x
 			heroe.rect.y = portales[heroe.portal].rect.y
         
