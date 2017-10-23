@@ -10,14 +10,15 @@ class Portales(Sprite):
 		Sprite.__init__(self)
 		self.image = util.cargar_imagen('imagenes/portal.png')
 		self.rect = self.image.get_rect()
-		self.rect.move_ip(coord[0], coord[0])
+		self.rect.move_ip(coord[0], coord[1])
 		
-	def transportar(heroe):
-		if heroe.portal == 1:
-			heroe.rect.move_ip(100,100)
+	def transportar(self, heroe):
+		"""if heroe.portal == 1:
+			heroe.rect.move_ip(10,10)
 		if heroe.portal == 2:
-			heroe.rect.move_ip(200,200)
+			heroe.rect.move_ip(10,10)
 		if heroe.portal == 3:
-			heroe.rect.move_ip(300,300)
+			heroe.rect.move_ip(10,10)
 		if heroe.portal == 4:
-			heroe.rect.move_ip(400,400)
+			heroe.rect.move_ip(10,10)"""
+                heroe.mover()
