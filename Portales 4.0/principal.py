@@ -23,7 +23,9 @@ def game():
     screen = pygame.display.set_mode( (SCREEN_WIDTH,SCREEN_HEIGHT) )
     pygame.display.set_caption( "Portales 4.0" )
     background_image = util.cargar_imagen('imagenes/fondo.jpg')
-    inicio_image = util.cargar_imagen('imagenes/inicio.jpg')
+    banner_image = util.cargar_imagen('imagenes/imagen_inicio.png')
+    caza_image = util.cargar_imagen('imagenes/caza_banner.png')
+    inicio_image = util.cargar_imagen('imagenes/fondo.jpg')
     pygame.mouse.set_visible(False)
     heroe = Heroe()
     villanos = [Villano((10,200),(3)),
@@ -71,7 +73,7 @@ def game():
                 for n in villanos:
                         if heroe.rect.colliderect(n.rect):
                                 if heroe.vida > 0:
-                                        heroe.vida = heroe.vida - 1
+                                        heroe.vida = heroe.vida - 3
                                 n.rect.x = randint(20,440)
                                 n.rect.y = randint(20,640)
 
@@ -106,14 +108,27 @@ def game():
                 puntos.close()
                 ordenar(pts)
                 linea = 120
-                fuente = pygame.font.Font(None, 25)
-                texto_puntos = fuente.render("Mejores puntajes: ", 1, (1, 1, 1))
-                screen.blit(texto_puntos, (20, linea))
-                fuente = pygame.font.Font(None, 23)
+                fuente = pygame.font.Font('fuente.ttf', 50)
+                texto_titulo = fuente.render("Portales 4.0", 1 ,(255,255,255))
+                screen.blit(texto_titulo, (210, 20))
+                fuente = pygame.font.Font('fuente.ttf', 30)
+                texto_banner = fuente.render("Pulse espacio para continuar...", 1 ,(255,255,255))
+                screen.blit(texto_banner, (150,430))
+                screen.blit(banner_image, (450,120))
+                screen.blit(caza_image, (330,290))
+                screen.blit(caza_image, (280,120))
+                fuente = pygame.font.Font('fuente.ttf', 25)
+                texto_puntos = fuente.render("Mejores puntajes: ", 1, (255, 255, 255))
+                screen.blit(texto_puntos, (50, linea))
+                fuente = pygame.font.Font('fuente.ttf', 23)
                 for x in pts[:10]:
-                    texto_puntos = fuente.render(str(x), 1, (1,1,1))
-                    screen.blit(texto_puntos, (80, linea + 25))
-                    linea += 25
+					if int(x) == heroe.puntos:
+						color = (255,255,0)
+					else:
+						color = (255,255,255)
+					texto_puntos = fuente.render(str(x), 1, color)
+					screen.blit(texto_puntos, (50, linea + 25))
+					linea += 25
                     
         pygame.display.update()
         pygame.time.delay(10)
